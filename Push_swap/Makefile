@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: schuah <schuah@student.42.fr>              +#+  +:+       +#+         #
+#    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2022/07/30 16:31:43 by schuah           ###   ########.fr        #
+#    Updated: 2022/08/16 18:30:19 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,15 @@ LIBFT_DIR	=	libft
 OBJS_DIR	=	objs/
 BONUS_DIR	=	bonus/
 
-all:			$(NAME)
+all:			
+				mkdir -p $(OBJS_DIR)
+				make create_libft
+				make $(NAME)
+
+bonus:
+				mkdir -p $(OBJS_DIR)
+				make create_libft
+				make $(BONUS_NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
@@ -44,26 +52,16 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 $(OBJS_DIR)%.o: $(BONUS_DIR)%.c
 				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
-$(NAME):		mkdir_objs create_libft $(OBJS)
+$(NAME):		$(OBJS)
 				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(SRCS) -o $(NAME)
 
-bonus:			$(BONUS_NAME)
-
-$(BONUS_NAME):	mkdir_objs create_libft2 $(BONUS_OBJS)
+$(BONUS_NAME):	$(BONUS_OBJS)
 				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(BONUS_SRCS) -o $(BONUS_NAME)
 
 create_libft:
 				make -C $(LIBFT_DIR)
 				cp $(LIBFT_DIR)/$(LIBFT) .
 				mv $(LIBFT) $(NAME)
-
-create_libft2:
-				make -C $(LIBFT_DIR)
-				cp $(LIBFT_DIR)/$(LIBFT) .
-				mv $(LIBFT) $(BONUS_NAME)
-
-mkdir_objs:
-				mkdir -p $(OBJS_DIR)
 
 clean:
 				rm -rf $(OBJS_DIR)
@@ -75,3 +73,5 @@ fclean:			clean
 				rm -rf $(BONUS_NAME)
 
 re:				fclean all
+
+.PHONY:			all bonus create_libft clean fclean re

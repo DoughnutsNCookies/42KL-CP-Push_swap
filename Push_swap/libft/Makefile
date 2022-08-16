@@ -1,4 +1,14 @@
-#VARIABLES
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/08/16 18:30:30 by schuah            #+#    #+#              #
+#    Updated: 2022/08/16 18:31:42 by schuah           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME			=	libft.a
 CC				=	gcc
@@ -8,9 +18,6 @@ CFLAGS			=	-Wall -Werror -Wextra $(HEADER)
 SRCS_DIR		=	srcs/
 OBJS_DIR		=	objs/
 PRINTF_DIR		=	printf/
-
-#SOURCES
-
 SRC_FILES		=	ft_isalpha \
 					ft_isdigit \
 					ft_isalnum \
@@ -69,27 +76,21 @@ SRC_FILES		=	ft_isalpha \
 					ft_ultoa_base \
 					ft_uitoa_base \
 					ft_uitoa
-
 SRCS 			= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 			= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
-OBJSF			=	.cache_exists
 
-#COMMANDS
-
-all:				$(NAME)
+all:				
+					mkdir -p $(OBJS_DIR)
+					make $(NAME)
 
 $(OBJS_DIR)%.o:		$(SRCS_DIR)%.c | $(OBJSF)
 					$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJSF):
-					mkdir -p $(OBJS_DIR)
 
 $(NAME):			$(OBJS)
 					$(AR) $(NAME) $(OBJS)
 
 clean:
 					rm -rf $(OBJS_DIR)
-					rm -rf $(OBJSF)
 
 fclean:				clean
 					rm -rf $(NAME)
