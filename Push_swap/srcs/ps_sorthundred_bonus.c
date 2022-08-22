@@ -77,7 +77,7 @@ void	sort_back(t_psinfo *psinfo)
 
 /* Push numbers from stack A to form chunks on stack B,
 ** the smaller the number, the more middle it is on stack B */
-void	make_stacks(t_psinfo *psinfo, int chunk_size, int n, int pa_count)
+void	make_stacks(t_psinfo *psinfo, int chunk_size, int n, int pb_count)
 {
 	while (psinfo->len_a)
 	{
@@ -86,11 +86,11 @@ void	make_stacks(t_psinfo *psinfo, int chunk_size, int n, int pa_count)
 			stack_op(psinfo, "pb");
 			if (psinfo->stack_b[0] < chunk_size * n - (chunk_size / 2))
 				stack_op(psinfo, "rb");
-			pa_count++;
+			pb_count++;
 		}
 		else
 			stack_op(psinfo, "ra");
-		if (pa_count == chunk_size * n
+		if (pb_count == chunk_size * n
 			&& chunk_size * n < psinfo->total_len)
 				n++;
 	}
