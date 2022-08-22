@@ -66,9 +66,7 @@ void	sort_back(t_psinfo *psinfo)
 		{
 			stack_op(psinfo, "pa");
 			if (psinfo->len_b > 1 && psinfo->stack_b[0] < psinfo->stack_b[1])
-			{
 				stack_op(psinfo, "ss");
-			}
 			else
 				stack_op(psinfo, "sa");
 		}
@@ -81,10 +79,6 @@ void	sort_back(t_psinfo *psinfo)
 ** the smaller the number, the more middle it is on stack B */
 void	make_stacks(t_psinfo *psinfo, int chunk_size, int n, int pa_count)
 {
-	int	*sorted_stack;
-
-	sorted_stack = get_stack(psinfo, 'a');
-	ft_quicksort(sorted_stack, 0, psinfo->len_a - 1);
 	while (psinfo->len_a)
 	{
 		if (psinfo->stack_a[0] < (chunk_size * n))
@@ -100,7 +94,6 @@ void	make_stacks(t_psinfo *psinfo, int chunk_size, int n, int pa_count)
 			&& chunk_size * n < psinfo->total_len)
 				n++;
 	}
-	free(sorted_stack);
 }
 
 /* Main function for sorting below 100 numbers */
