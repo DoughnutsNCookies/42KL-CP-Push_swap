@@ -6,7 +6,7 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2022/08/16 18:30:19 by schuah           ###   ########.fr        #
+#    Updated: 2022/08/23 21:32:04 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,6 @@ $(BONUS_NAME):	$(BONUS_OBJS)
 
 create_libft:
 				make -C $(LIBFT_DIR)
-				cp $(LIBFT_DIR)/$(LIBFT) .
-				mv $(LIBFT) $(NAME)
 
 clean:
 				rm -rf $(OBJS_DIR)
