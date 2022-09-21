@@ -6,14 +6,13 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2022/08/23 21:32:04 by schuah           ###   ########.fr        #
+#    Updated: 2022/09/21 14:12:59 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	push_swap
 BONUS_NAME	=	checker
 LIBFT		=	libft.a
-ARRC		=	ar rcs
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
@@ -38,12 +37,12 @@ BONUS_DIR	=	bonus/
 
 all:			
 				mkdir -p $(OBJS_DIR)
-				make create_libft
+				make libft
 				make $(NAME)
 
 bonus:
 				mkdir -p $(OBJS_DIR)
-				make create_libft
+				make libft
 				make $(BONUS_NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
@@ -53,12 +52,12 @@ $(OBJS_DIR)%.o: $(BONUS_DIR)%.c
 				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(NAME):		$(OBJS)
-				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(SRCS) -o $(NAME)
+				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(OBJS) -o $(NAME)
 
 $(BONUS_NAME):	$(BONUS_OBJS)
-				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(BONUS_SRCS) -o $(BONUS_NAME)
+				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(BONUS_OBJS) -o $(BONUS_NAME)
 
-create_libft:
+libft:
 				make -C $(LIBFT_DIR)
 
 clean:
@@ -72,4 +71,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all bonus create_libft clean fclean re
+.PHONY:			all bonus libft clean fclean re
