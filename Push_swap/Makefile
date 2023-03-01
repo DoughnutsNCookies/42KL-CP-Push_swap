@@ -6,7 +6,7 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2022/09/21 14:12:59 by schuah           ###   ########.fr        #
+#    Updated: 2023/03/01 14:41:44 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	push_swap
 BONUS_NAME	=	checker
 LIBFT		=	libft.a
 CC			=	gcc
-RM			=	rm -f
+RM			=	rm -rf
+MKDIR		=	mkdir -p
 CFLAGS		=	-Wall -Wextra -Werror
 SRCS_FILES	=	ps_main_bonus \
 				ps_getters_bonus \
@@ -36,14 +37,12 @@ OBJS_DIR	=	objs/
 BONUS_DIR	=	bonus/
 
 all:			
-				mkdir -p $(OBJS_DIR)
-				make libft
-				make $(NAME)
+				$(MKDIR) $(OBJS_DIR)
+				make libft $(NAME)
 
 bonus:
-				mkdir -p $(OBJS_DIR)
-				make libft
-				make $(BONUS_NAME)
+				$(MKDIR) $(OBJS_DIR)
+				make libft $(BONUS_NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
@@ -61,13 +60,12 @@ libft:
 				make -C $(LIBFT_DIR)
 
 clean:
-				rm -rf $(OBJS_DIR)
+				$(RM) $(OBJS_DIR)
 				make clean -C $(LIBFT_DIR)
 
 fclean:			clean
 				make fclean -C $(LIBFT_DIR)
-				rm -rf $(NAME)
-				rm -rf $(BONUS_NAME)
+				$(RM) $(NAME) $(BONUS_NAME)
 
 re:				fclean all
 
