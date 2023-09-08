@@ -1,4 +1,11 @@
 # 42KL-CP-Push_swap
+Writing a sorting algorithm is always a very important step in a developer’s journey.
+
+Sorting values is simple.
+
+To sort them the fastest way possible is less simple.
+
+Especially because from one integer configuration to another, the most efficient sorting solution can differ.
 
 Push Swap challenges sorting data on a stack using a limited set of instructions in C, aiming to achieve the lowest possible number of actions.
 
